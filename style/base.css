@@ -1,0 +1,101 @@
+/*****************************************************************
+ * file: base.css
+ * written by: somebody
+ * date created: 20th August 2018
+*****************************************************************/
+
+@charset 'utf-8';
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+html, body, #main {
+    height: 100%;
+}
+body {
+    padding: 0; margin: 0;
+    font: normal 100%;
+    font-family: "Muli";
+    text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+}
+h1, h2, h3 {
+    font-weight: normal;
+    font-family: 'Ubuntu';
+    color: #369;
+    text-align: center;
+    text-transform: uppercase;
+}
+p {
+    margin: 1em auto;
+    color: #333;
+    line-height: 1.5;
+    text-align: justify;
+}
+#header {
+    position: fixed;
+    background: #111;
+    width: 100%;
+    padding: 0.5em 0;
+/*    overflow: hidden; */
+    opacity: 0.95;
+}
+#header > a > img {
+    width: 100px;
+    margin-left: 0.25em;
+}
+#nav {
+    position: absolute;
+    top: 0;
+    right: 0.5em;
+}
+#nav li {
+    float: left;
+    padding: 0.5em 0;
+    margin-left: 1em;
+}
+#nav a {
+    font-size: 0.9em;
+    font-family: 'Roboto';
+    color: #ccc;
+    transition: all 250ms ease-in-out;
+}
+#nav a:first-of-type, #nav a:nth-last-of-type(2)  {
+    font-family: 'FontAwesome';
+    color: #ccc;
+}
+#nav a:hover {
+    color: #32cd32;
+    padding-bottom: 0.6em;
+    border-bottom: solid 3px #32cd32;
+}
+/*
+#nav li:first-of-type {
+    display: none;
+}
+*/
+#main {
+    /*** adjusted by script ***/
+    /* padding-top: 30px; */
+}
+
+@media screen and (max-width: 399px) {
+    #nav {
+        position: relative;
+    }
+    #nav li {
+        width: calc(75% / 4);
+        margin: 0;
+        padding: 0;
+    }
+    #nav li:nth-of-type(1) {
+        width: 20%;
+        margin-right: 5%;
+        text-align: right;
+
+    }
+}
+
