@@ -1,73 +1,1022 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AuckLug</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <meta charset='utf-8'>
-    <link rel='stylesheet' type='text/css' href='./style/index.css'>
-    <link href="https://fonts.googleapis.com/css?family=Muli|Ubuntu|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			  crossorigin="anonymous">
-    </script>
+	<title>Jugemu</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto|Ubuntu" rel="stylesheet">
+<style>
+/******
+    Here come the styles
+******/
+    * {
+    	margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    html, body {
+    	height: 100%;
+		width: 100%;
+    }
+    body {
+    	font: normal 100%;
+		background: url(./images/couple.jpg) no-repeat center center;
+		background-attachment: fixed !important;
+		background-size: cover !important;
+    }
+	h1, h2, h3, h4, h5 {
+		font-family: "Ubuntu";
+		font-weight: normal;
+	}
+	h2 {
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 3vw;
+		letter-spacing: 0.2em;
+		color: #555;
+		padding: 2em 0 1em 0;
+		overflow: hidden;
+		border: dashed 1px #036;
+		border-width: 0 0 0 5px;
+	}
+	h2 > span {
+		padding: 0.5em 1em;
+		display: inline-block;
+		position: relative;
+		background: #381;
+		color: #eee;
+	}
+	h2 > span:before {
+		content: "";
+		height: 0;
+		position: absolute;
+		width: 95%;
+		border: solid 1px #444;
+		border-width: 2em 0 0 0;
+		left: 5px;
+		top: -0.25em;
+		transform: rotate(-5deg);
+		z-index: -1;
+	}
+	h2 > sp an:after {
+		content: "";
+		height: 0;
+		position: absolute;
+		width: 80%;
+		border: solid 1px #ccc;
+		border-width: 1px 0 0 0;
+		transform: rotate(-90deg);
+		transform-origin: 20% 0%;
+	}
+   	nav {
+		font-family: "Ubuntu";
+        padding: 1em 0;
+        background: #333;
+        position: fixed;
+		top: 0;
+		width: 100%;
+        font-size: 0.9em;
+        z-index: 100;
+    }
+	nav ul {
+      	max-width: 46em;     
+   		margin: auto;
+		display: flex;
+        flex-flow: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        text-align: center;
+    }
+    nav a {
+		text-transform: uppercase;
+    	text-decoration: none;
+        color: #aaa;
+        transition: all 0.25s ease-in-out;
+
+    }
+    nav ul li:not(:first-of-type) a:hover {
+    	padding-bottom: 0.25em;
+        color: #fff;
+        border-bottom: dotted 5px #eee;
+    }
+    #menu-toggler {
+        position: absolute;
+        top: -100em;
+    }
+    div#panel {
+		flex-flow: column;
+    	background: #000;
+        height: 50%;
+        position: fixed;
+		top: 45px;
+        width: 100%;
+		opacity: 0.9;
+        z-index: 0;
+    }
+    #panel div {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+        z-index: 50;
+    }
+	#panel div input, #panel div button {
+		font-family: courier;
+		font-size: 2vw;
+    	padding: 0.5em;
+		box-sizing: border-box;
+	}
+    #panel div input {
+        border-radius: 0;
+        border: none;
+		text-align: center;
+		background: #eee;
+		width: 20%;
+		flex: none 1 auto;
+    }
+	#panel div > input:first-of-type {
+		border-right: 2px dashed #777;
+	}
+	#panel div button {
+		border: none;
+		background: #999;
+		color: #eee;
+		width: 10%;
+		flex: none 1 auto;
+		text-transform: uppercase;
+        transition: all 1s ease-in-out;
+	}
+    #panel div button.button-enabled {
+        background-color: #369;
+        cursor: pointer;
+    }
+    #panel div button.button-disabled {
+        background-color: #999;
+        cursor: default;
+    }
+    #panel section {
+		position: relative;
+		z-index: 5;
+    	height: 100%;
+        background: #444;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    #panel section > span {
+    	font-size: 30vh;
+    }
+    main {
+		padding: 1em 0 0 0;
+    	position: relative;
+		margin: auto;
+        z-index: 10;
+    }
+	p {
+		font-family: "Roboto";
+		line-height: 1.5;
+	}
+	main > section:first-of-type {
+		max-width: 58em;
+		margin: auto;
+	}
+	main > section:nth-of-type(2) {
+	}
+	main > section:first-of-type p {
+		max-width: 38em;
+		font-size: 1.25em;
+		line-height: 1.8;
+		background: #ddd;
+		padding: 3em 2em;
+		margin-bottom: 0.5em;
+	}
+	main > section:first-of-type p::first-letter {
+		font-size: 3em;
+		display: inline-block;
+        line-height: 0.5em;
+        margin: 0.2em 0.1em 0.1em 0;
+		float: left;
+		color: #841;
+	}
+	main > section:first-of-type p:nth-of-type(even) {
+		margin: 0 auto 0.5em;
+	}
+	main > section:first-of-type p:nth-of-type(1) {
+		border: solid 5px #369;
+	}
+	main > section:first-of-type p:nth-of-type(2) {
+		border: dashed 5px #369;
+	}
+	main > section:first-of-type p:nth-of-type(3) {
+		border: dotted 5px #369;
+	}
+	main > section:first-of-type p:nth-of-type(4) {
+		border: double 5px #369;
+	}
+	main > section:nth-of-type(2) > div {
+		display: flex;
+		flex-flow: row;
+		flex-wrap: wrap;
+	}
+	main > section:nth-of-type(2) > div > div {
+		flex: 1 1 360px;
+	}	
+
+	main > section:nth-of-type(2) h3 {
+		font-size: 1.5em;
+		text-align: center;
+		padding: 0.5em 0.25em;
+		background: ;
+	}
+	main > section:nth-of-type(2) div p {
+		text-align: justify;
+		padding: 0.5em 1em 0.75em;
+		background: #fff;
+	}
+	main > section:nth-of-type(2) div div:nth-of-type(1) h3 {
+		background: #000;
+		color: #fff;
+	}
+	main > section:nth-of-type(2) div div:nth-of-type(2) h3 {
+		background: #f00;
+		color: #fff;
+	}
+	main > section:nth-of-type(2) div div:nth-of-type(3) h3 {
+		background: #090;
+		color: #fff;
+	}
+	main > section:nth-of-type(2) div div:nth-of-type(4) h3 {
+		background: #007;
+		color: #fff;
+	}
+	main > section:nth-of-type(2) div div:nth-of-type(5) h3 {
+		background: #902;
+		color: #fff;
+	}
+	main > section:nth-of-type(2) div div:nth-of-type(6) h3 {
+		background: #aa0;
+		color: #fff;
+	}
+	section#education > div {
+		display: flex;
+		flex-flow: row;
+        align-content: flex-start;
+		justify-content: space-around;
+	}
+	section#education > div > div {
+		flex: 1 1 360px;
+		margin: auto 2.5%;
+		opacity: 0;
+	}
+    section#education > div > div > div {
+        background: #fafafa;
+        padding: 3em 1em 2em;
+        position: relative;
+        top: -2em;
+        z-index: 0;
+    }
+	section#education img {
+		width: 100%;
+		border-radius: 100%;
+		display: block;
+		background: #fff;
+		border: solid 5px #775;
+        position: relative;
+        z-index: 10;
+        box-sizing: border-box;
+	}
+    section#education div div div span {
+        display: block;
+        margin-top: 1em;
+        text-align: center;
+    }
+    #work-experience {
+        background: #eaeaea;
+        color: #eaeaea;
+    }
+    #work-experience h2 > span {
+        transform: rotate(-2.5deg);
+    }
+    #work-experience h3 {
+        font-size: 2.5em;
+        text-align: center;
+    }
+    #work-experience div > span {
+        display: block;
+        text-align: center;
+        color: #eaeaea;
+    }
+    #work-experience span > strong {
+        font-size: 1.5em;
+        display: inline-block;
+        margin: 1em auto;
+    }
+    #work-experience p {
+        max-width: 58em;
+        padding: 0 1em;
+        font-size: 1.1em;
+        margin: auto;
+    }
+    #work-experience ol {
+        max-width: 40em;
+        margin: auto;
+    }
+    #work-experience ol > li {
+        list-style-type: decimal;
+        font-size: 1.2em;
+        margin: 1em auto;
+        color: #fff;
+    }
+    #work-experience ol ul {
+        font-size: 0.9em;
+        margin: 0.5em 0 0 2em;
+    }
+    #work-experience > div {
+        padding: 2em;
+    }
+    #work-experience > div:first-of-type {
+        background: #036;
+    }
+    #work-experience > div:first-of-type h3 {
+        color: #9cf;
+    }
+    #work-experience > div:nth-of-type(2) {
+        background: #434343;
+    }
+    #work-experience > div:nth-of-type(2) h3 {
+        color: #ccc;
+    }
+    #work-experience > div:nth-of-type(3) {
+        background: #078;
+    }
+    #work-experience > div:nth-of-type(3) h3 {
+        color: #ccc;
+    }
+    #interests > div {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+    }
+    #interests img {
+        display: block;
+        width: 100%;
+    }
+    #interests div > span {
+        display: block;
+        position: absolute;
+        font-size: 7.5vw;
+        color: #fff;
+        text-shadow: 1px 1px #000;
+    }
+    @supports (-webkit-overflow-scrolling: touch) {
+        #interests div > span {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    footer {
+        padding: 1em 0;
+        background: #000;
+        font-size: 0.8em;
+        text-align: center;
+        color: #aaa;
+    }
+    footer * {
+        display: block;
+        margin: 0.5em 0;
+    }
+    footer a {
+        color: #ddd;
+    }
+    #backtotop {
+        font-size: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5em;
+        height: 1.5em;
+        background: #eec;
+        position: fixed;
+        bottom: 2em;
+        right: 0.5em;
+        z-index: 50;
+        border-radius: 100%;
+        border: solid 3px #775;
+        color: #333;
+        cursor: pointer;
+        visibility: hidden;
+    }
+	@media screen and (max-width: 999px) {
+		h2 span {
+			font-size: 30px;
+		}
+	}
+    @media screen and (min-width: 860px) {
+        nav {
+            he ight: 16px !important;
+        }
+        nav li {
+            display: block !important;
+        }
+    }
+    @media screen and (max-width: 859px) {
+        #menu-toggler {
+            position: static;
+        }
+        nav {
+            height: 16px;
+            overflow: hidden;
+        }
+        nav ul {
+            max-width: 100%;
+            display: block;
+        }
+        nav ul li:not(:first-of-type) {
+            padding: 0.5em 0;
+            display: none;
+        }
+    }
+	@media screen and (max-width: 419px) {
+        section#education > div {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        section#education > div > div {
+            margin: 0;
+        }
+	}
+    @keyframes Monkey {
+    	0% {
+        	transform: rotateY(0deg);
+        }
+        100% {
+        	transform: rotateY(90deg);
+        }
+    }
+    @-webkit-keyframes Monkey {
+    	0% {
+        	-webkit-transform: rotateY(0deg);
+        }
+        100% {
+        	-webkit-transform: rotateY(90deg);
+        }
+    }
+	@keyframes MonkeyMagic {
+		0% { opacity: 0; }
+		100% { opacity: 1; }
+	}
+    @keyframes MonkeyOpen {
+        0% {
+            height: 16px;
+        }
+        100% {
+            height: 198.25px;
+        }
+    }
+    @keyframes MonkeyClose {
+        0% {
+            height: 198.25px;
+        }
+        100% {
+            height: 16px;
+        }
+    }
+    .animationPaused {
+        animation-play-state: paused !important;
+    }
+    
+</style>
 </head>
 <body>
-    <div id='header'>
-        <a href='/'><img src='./img/logo.png' alt='AuckLug Logo'></a>
-        <div id='nav'>
-            <ul>
-                <!--<li class='fa-ff fa fa-bars' style='color:#ddd;'></li>-->
-                <li><a href='/' class='fa-ff fa fa-home'></a></li>
-                <li><a href='/'>About</a></li>
-                <li><a href='/'>News</a></li>
-                <li><a href='/'>Events</a></li>
-                <li><a href='/'>Contact</a></li>
-            </ul>
+    <div id="psudoBackground"></div>
+    <nav>
+        <ul>
+            <li id="menu-toggler" ><a href="javascript:void(0);" onclick="toggleMenu(this);">&#35;M</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#interests">Interests</a></li>
+            <li><a href="#referees">Referees</a></li>
+        </ul>
+    </nav>
+
+    <div id="panel">
+        <div>
+            <input placeholder="start number" maxlength="6"><input placeholder="end number" maxlength="6"><button disabled="true" onclick="go();">Go</button>
         </div>
-    </div>    
-    <div id='main'>
-        <div id='welcome'>
-            <span>Hi there</span>
-        </div>
         <section>
-            <h2>Welcome!</h2>
-            <p>Looking for meetings? The latest meeting are usually posted on <a href=''>meetup.com/Aucklug</a>, details should be posted in the events section of the sidebar, and meeting information is always posted on the mailing list.</p>
-        </section>
-        <section>
-            <h2>Mission</h2>
-            <p>The Auckland Linux Users Group is a community of Linux enthusiasts from Auckland, New Zealand. Our mission is to:</p>
-            <ul>
-                <li>Raise the profile of Linux in Auckland.</li>
-                <li>Be the recognised champions of Linux in Auckland</li>
-                <li>Help make Linux and Linux related software available to Aucklanders.</li>
-                <li>Provide, in cooperation with NZLUG and other NZ regional LUGs, a resource for Linux users in Auckland and/or links to other resources.</li>
-                <li>To provide a user group with active, friendly members able to welcome and provide assistance to people entering the Linux world, as well as those who've been playing with it for a while.</li>
-                <li>To hold regular meetings and work to provide Linux related events in the Auckland area.</li>
-            </ul>
-        </section>
-        <section>
-            <h2>Background</h2>
-            <p>The Auckland LUG was 'forked' from the New Zealand Linux Users Group (NZLUG) in 2005. The NZLUG and Auckland LUG have been active in Auckland since 1998, and have been seen at many IT and Free/Open Source Events across the region over the years.</p>
-        </section>
-        <section>
-            <h2>Ongoing efforts</h2>
-            <p>We look forward to continuing to support Aucklanders and show them the power, flexibility and freedom that Linux provides their computer experience. On this website you'll find information about the LUG, it's people and events, and pointers to many useful resources.</p>
+            <span>&#0;</span>
         </section>
     </div>
-    
+
+    <main>
+
+        <section>
+            <h2><span>About</span></h2>
+            <p>I am an experienced information system engineer with a strong focus on web development, programming as well as a wealth of knowledge and experience in user-support, troubleshooting, hardware and software and information security.</p>
+            <p>As a system engineer, I am skilled at providing high quality services in the overall IT areas and
+    applying my strong technical and problem-solving skills to get things done quickly and properly. I am
+    also an excellent team player who can bring stability and robustness to the team.</p>
+            <p>Having emigrated in 2014 after ten successful years in Singapore, I am looking to continue my career,
+    having completed a post graduate study in Information Technology in May 2017. After the completion of my study, I have undertaken two volunteer IT roles to gain New Zealand experience, one of which is ongoing. I’m currently working for Hearts & Minds (formerly known as Raeburn House) as a part-time web developer/IT coordinator.</p>
+            <p>I’m a work visa holder and the visa will not expire until June 2021.</p>
+        </section>
+
+        <section>
+            <h2><span>Skills</span></h2>
+            <div>
+                <div>
+                    <h3>Web Development / Programming</h3>
+                    <p>Gained firm knowledge and experience in HTML5, CSS3, JavaScript (Native, jQuery and AngularJs) and PHP. With these strong technical skills I am capable of quickly adapting to any new web technologies or frameworks which are new to me. I also possess knowledge on C#, ASP.Net, Perl, Python, C, C++ and Java, which enables me to learn new programming languages or frameworks very rapidly. During my post graduate course, I learnt R language for data mining.</p>
+                </div>
+                <div>
+                    <h3>Help Desk / User support</h3>
+                        <p>Extensive experience in IT service desk, handling a wide range of IT issues including but not limited to hardware, software, virus/malware removal, and basic data recovery. I am capable of working on multiple issues at one time.</p>
+                </div>
+                <div>
+                    <h3>Server Administration</h3>
+                        <p>Acquired an intermediate level of Linux server administration with Ubuntu server, database servers and Apache web server. I have experience in server setup for the web development purpose (server software installation, and server configuration). I understand and use Linux commands to conduct server operations.</p>
+                </div>
+                <div>
+                    <h3>Database</h3>
+                        <p>Possess fair knowledge of MySQL and MS SQL through testing environments, which can be converted into working knowledge. Through my post-graduate diploma course, I have gained a fair understanding of data modelling, normalisation and database design.</p>
+                </div>
+                <div>
+                    <h3>Problem solving</h3>
+                        <p>Well developed analytical capability to quickly reach the cause of the problem and come up with possible solutions. I possess “never give up” attitude and try the best I can until the problem is solved.</p>
+                </div>
+                <div>
+                    <h3>Interpersonal skills</h3>
+                        <p>Good at building long-lasting trusted relationships with people via different communication channels. In my previous jobs, I often played a role of a mediator who connects people from different cultures. I have also developed skills to collect information from various sources through my 13-year corporate career.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2><span>Education</span></h2>
+            <div>
+                <div>
+                    <img src="./images/whitireia.jpg" alt="whitireia community polytechnic">
+                    <div>
+                        <span>Post Graduate Diploma in IT</span>
+                        <span>Whitireia Community Polytechnic</span>
+                        <span>Auckland - New Zealand</span>
+                        <span>June 2016 - May 2017</span>
+                    </div>
+                </div>
+                <div>
+                    <img src="./images/ais.jpg" alt="Auckland Institute of Studies">
+                    <div>
+                        <span>Graduate Diploma in IT</span>
+                        <span>Auckland Institute of Studies</span>
+                        <span>Auckland - New Zealand</span>
+                        <span>June 2014 - May 2015</span>
+                    </div>
+                </div>
+                <div>
+                    <img src="./images/aoyama_gakuin.png" alt="Aokyama Gakuin University">
+                    <div>
+                        <span>Bachelor of Arts </span>
+                        <span>Aoyama Gakuin University</span>
+                        <span>Tokyo - Japan</span>
+                        <span>April 1995 - March 1999</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section id="work-experience">
+            <h2><span>Work Experience</span></h2>
+            <div>
+                <h3>Hearts &amp; Minds</h3>
+                <span>August 2017 - Present</span>
+                <span><strong>Developer / IT Coordinator</strong></span>
+                <p>Hearts and Minds, formerly known as Raeburn House, is one of the most renowned social profit organisations in New Zealand. My main responsibilities are as follows:</p>
+                <ol>
+                    <li>Website (http://www.raeburnhouse.org.nz/) management and development
+                        <ul>
+                            <li>A CMS is used to manage the contents. I mainly hard-code the updates or newly
+    developed web parts on the CMS. I added a responsive functionality to the main navigation menu.</li>
+                        </ul>
+                    </li>
+                    <li>Debug/Develop mobile applications (Java, PHP)
+                        <ul>
+                            <li>The current mobile apps faced an issue with data loading. I fixed the issue by changing the server settings and cleaning up the code. Currently I’m prototyping a new mobile apps with Apache Cordova.</li>
+                        </ul>
+                    </li>
+                    <li>Database (MySQL) administration to update service directory database
+                        <ul>
+                            <li>The entire service directory is updated once two years. I converted the original Excel data into the database format and imported the processed data into the database. This work involved backing up the previous data.</li>
+                        </ul>
+                    </li>
+                    <li>Design/photograph processing for websites and other purposes (Adobe suites)
+                        <ul>
+                            <li>Process images for the website by using Adobe suites and GIMP. Also engaged indesign change.</li>
+                        </ul>
+                    </li>
+                    <li>Campaign Mail
+                        <ul>
+                            <li>Just started working on campaign mails with MailChimp.</li>
+                        </ul>
+                    </li>
+                    <li>Miscellaneous work
+                        <ul>
+                            <li>Troubleshooting</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            <div>
+                <h3>Kyoya Japanese Restaurant</h3>
+                <span>May 2017 - Present</span>
+                <span><strong>Volunteer Web Developer</strong></span>
+                <p>Kyoya Japanese Restaurant was established in 1995 and has been loved by local customers. The restaurant is well-known for the authentic Japanese cuisine. As a volunteer, I have been working on the following:</p>
+                <ol>
+                    <li>Website Development / Management (<a href="https://www.kyoya.co.nz">www.kyoya.co.nz</a>)
+                        <ul>
+                            <li>I have developed the new website with PHP, HTML, CSS and JavaScript and am
+    currently working on further development.</li>
+                        </ul>
+                    </li>
+                    <li>New domain acquisition (kyoya.co.nz) and setting up the website environment
+                        <ul>
+                            <li>I made a domain request on behalf of the restaurant by corresponding with the web hosting provider.</li>
+                        </ul>
+                    </li>
+                    <li>Gift voucher/Drink menu design
+                        <ul>
+                            <li>Designed a new gift voucher by using an online design tool.</li>
+                        </ul>
+                    </li>
+                    <li>Design/photograph processing for websites and other purposes (Adobe suites)
+                        <ul>
+                            <li>Process images for the website by using Adobe suites and GIMP. Also engaged indesign change.</li>
+                        </ul>
+                    </li>
+                    <li>Email Account management</li>
+                    <li>Miscellaneous work
+                        <ul>
+                            <li>Computer fix, other troubleshooting and email account setup.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            <div>
+                <h3>Shimizu Corporation (Singapore)</h3>
+                <span>2004 - 2014</span>
+                <span><strong>IT System Engineer (2007 - 2014)</strong></span>
+                <span><strong>Marketing / Corporate Planner (2004 - 2007)</strong></span>
+
+                <p>Shimizu Corporation is a leading architectural, civil engineering and general construction firm with annual sales of approximately US $15billion. It has been widely recognised as one of the top 5 contractors in Japan and among the top 20 in the world. The overseas operations of the firm is headquartered in Singapore and has overseas branches in more than 20 countries.</p>
+                <ol>
+                    <li>Website Development / Management (<a href="https://www.kyoya.co.nz">www.kyoya.co.nz</a>)
+                        <ul>
+                            <li>I have developed the new website with PHP, HTML, CSS and JavaScript and am
+    currently working on further development.</li>
+                        </ul>
+                    </li>
+                    <li>New domain acquisition (kyoya.co.nz) and setting up the website environment
+                        <ul>
+                            <li>I made a domain request on behalf of the restaurant by corresponding with the web hosting provider.</li>
+                        </ul>
+                    </li>
+                    <li>Gift voucher/Drink menu design
+                        <ul>
+                            <li>Designed a new gift voucher by using an online design tool.</li>
+                        </ul>
+                    </li>
+                    <li>Design/photograph processing for websites and other purposes (Adobe suites)
+                        <ul>
+                            <li>Process images for the website by using Adobe suites and GIMP. Also engaged indesign change.</li>
+                        </ul>
+                    </li>
+                    <li>Email Account management</li>
+                    <li>Miscellaneous work
+                        <ul>
+                            <li>Computer fix, other troubleshooting and email account setup.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section id="interests">
+            <h2><span>Interests</span></h2>
+            <div>
+                <span>Body Surfing</span>
+                <img src="images/ocean.jpg" alt="Ocean">
+            </div>
+            <div>
+                <span>Zen</span>
+                <img src="images/lotus.jpg" alt="Lotus">
+            </div>
+            <div>
+                <span>Natural Beauty</span>
+                <img src="images/rangitoto.jpg" alt="Rangitoto">
+            </div>
+            <div>
+                <span>Reading</span>
+                <img src="images/book.jpg" alt="Book">
+            </div>
+            <div>
+                <span>Radio Listening</span>
+                <img src="images/radio.jpg" alt="Radio">
+            </div>
+        </section>
+    </main>
+    <footer>
+        <a href="mailto:kotarowat@gmail.com">Kotaro</a>
+        <span>Good day!</span>
+    </footer>
+    <div id="backtotop" onclick="backToTop();">
+        <span>
+            &#8679;
+        </span>    
+    </div>   
+
     <script>
-        $(function () {
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            var pseudoBackground = document.createElement("div");
+            pseudoBackground.style.background = "url(./images/couple.jpg) no-repeat center center";
+            pseudoBackground.style.backgroundSize = "cover";
+            pseudoBackground.style.position = "fixed";
+            pseudoBackground.style.top = "0";
+            pseudoBackground.style.width = " 100%";
+            pseudoBackground.style.height = "100%";
+            document.body.insertBefore(pseudoBackground, document.querySelector("nav"));
+        }
+
+        var navItems = document.querySelectorAll ("nav a");
+        var sections = document.querySelectorAll("main > section");
+        
+        for (var index = 0; index < navItems.length; index++) {
+            if (index == 0) {
+                continue;
+            }
+            setListener(navItems[index], index);
+        }
+        
+        function setListener (element, index) {
+            element.addEventListener(
+                "click",
+                function (evt) {
+                    evt.preventDefault();
+                    var toBeScrolled =
+                        parseInt(document.querySelector("main > section:nth-of-type(" + (index).toString() + ")").getBoundingClientRect().top) +
+                        parseInt(window.scrollY);
+                    var currentScroll = 0;
+                    
+                    scrollToSection();
+                    
+                    function scrollToSection () {
+                        if (currentScroll < toBeScrolled) {
+                            window.requestAnimationFrame(scrollToSection);
+                            currentScroll = ((currentScroll + toBeScrolled / 20) < toBeScrolled) ? (currentScroll + toBeScrolled / 20) : (currentScroll + (toBeScrolled - currentScroll));
+                            window.scrollTo(0, currentScroll);
+                            
+                        }
+                        else {
+                            var nav = evt.target.parentNode.parentNode.parentNode;
+                            if (nav.style.animationName == "MonkeyOpen") {
+                                toggleMenu();
+                            }
+                        }
+                    }
+                    
+                },
+                false
+            );
+        }
+        
+        
+        var rotateObj = null;
+        var done = false;
+
+        function Panel (element, startNum, endNum, animationProps) {
+            var _element = element;
+            var _startNum, _currentNum;
+            _startNum = _currentNum = startNum;
+            var _endNum = endNum;
+            var _counter = 0;
+            var _animationState = "running";
+            this.animationProps = animationProps;
+
+            this.startRotate = function () {
+                _element.style.animation = this.animationProps.join (" ");
+                _element.style.webkitAnimation = this.animationProps.join (" ");
+                _element.addEventListener(
+                    "animationiteration",
+                    function () {
+                        _counter++;
+
+                        if (_counter % 2) {
+                            _currentNum = (_currentNum <= _endNum) ? ++_currentNum : _startNum;
+                            _element.querySelector("span").innerHTML = "&#x" + _currentNum.toString() + ";";
+                        }
+                    },
+                    false
+                );
+
+                _element.addEventListener(
+                    "click",
+                    function () {
+                        _animationState = (_animationState == "running") ? "paused" : "running";
+                        _element.style.animationPlayState = _animationState;
+                        _element.style.webkitAssaanimationPlayState = _animationState;
+                        //_element.className = "animationPaused";
+
+                    }
+                );
+            }
+            this.dropAnimation = function () {
+                _element.querySelector("span").innerHTML = "Start New";
+                _element.style.animation = null;
+//                alert(_element.style.animation);
+            }
+        }
+
+        window.addEventListener (
+            "load",
+            function () {
+                rotateObj = new Panel (
+                    document.querySelector("#panel > section"),
+                    5000,
+                    50000,
+                    ["Monkey", "5s", "ease-in-out", "infinite", "alternate"]
+                );
+                rotateObj.startRotate();
+
+                var txtFields = document.querySelectorAll("input");
+                txtFields.forEach(function (element) {
+                    element.addEventListener(
+                        "keydown",
+                        allowDigitsOnly,
+                        false
+                    );
+                    element.addEventListener(
+                        "keyup",
+                        checkInputs,
+                        false
+                    );
+                });
+
+                adjustMain ();
+                this.addEventListener(
+                    "resize",
+                    function () {
+                        adjustMain ();
+                    },
+                    false
+                );
+
+                function adjustMain () {
+                    var main = document.querySelector ("main");
+
+                    var navHeight = outerHeight (document.querySelector("nav"));
+                    var panelHeight = outerHeight (document.querySelector ("#panel"));
+                    main.style.marginTop = (navHeight + panelHeight).toString() + "px";
+
+                    function outerHeight (element) {
+                        var styleGetter = window.getComputedStyle(element);
+                        var props = [
+                            "height",
+                            "margin-top",
+                            "margin-bottom",
+                            "padding-top",
+                            "padding-bottom",
+                            "border-top-width",
+                            "border-bottom-width"
+                        ];
+
+                        var values = props.map (function (prop) {
+                            return parseFloat (styleGetter.getPropertyValue (prop));
+                        });
+
+                        return values.reduce(
+                            function (x, y) { return x + y; },
+                            0
+                        );
+                    }
+                }
+
+                function allowDigitsOnly (evt) {
+                    var keyCode = evt.keyCode;
+                    if (([8, 37, 39, 46, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57]).indexOf (keyCode) == -1) {
+                        evt.preventDefault();
+                    }                    
+                }
+                
+                function checkInputs () {
+                    var inpField1ValOne = document.querySelector("input:nth-of-type(1)").value;
+                    var inpField1ValTwo = document.querySelector("input:nth-of-type(2)").value;
+                    var button = document.querySelector("#panel button");
+                    
+                    
+                    var buttonReady = (inpField1ValOne && inpField1ValTwo && parseInt(inpField1ValOne) < parseInt(inpField1ValTwo));
+                    
+                    button.className = buttonReady ? "button-enabled" : "button-disabled";
+                    
+                    button.disabled = buttonReady ? false : true;
+                }
+                
+                this.addEventListener(
+                    "scroll",
+                    function () {
+                        var offsetFromViewPortTop = parseInt(document.querySelector("#education > div").getBoundingClientRect().top);
+                        if (!done && offsetFromViewPortTop < document.documentElement.clientHeight) {
+                            done = true;
+                            var targets = document.querySelectorAll("#education > div > div");
+                            for (var index = 0; index < targets.length; index++) {
+                                animationCallback (targets[index], ((index + 1) * 0.5).toString() + "s");
+                            }
+                        }
+
+                        function animationCallback (element, delay) {
+                            element.style.animation = "MonkeyMagic 500ms ease-in-out " + delay + " forwards";
+                        }
+                        document.querySelector("#backtotop").style.visibility = (parseInt(this.scrollY) > parseInt(document.documentElement.clientHeight)) ? "visible" : "hidden";
+
+                    },
+                    false
+                );
+                this.addEventListener(
+                    "resize",
+                    function () {
+                        var clientWidth = parseInt(document.documentElement.clientWidth);
+                        var animationName = document.querySelector("nav").style.animationName;
+                        
+                        if ( clientWidth > 859 && animationName == "MonkeyOpen") {
+                            toggleMenu();
+                        }
+                    },
+                    false
+                );  
+            },
+            false
+        );
+
+        function backToTop() {
+            var toBeScrolled = document.documentElement.scrollTop || document.body.scrollTop;
             
-            adjustMargin ();
-            $(window).on('resize', adjustMargin);
+            if (toBeScrolled > 0) {
+                window.requestAnimationFrame(backToTop);
+                window.scrollTo (0, toBeScrolled - (toBeScrolled / 5));
+            }
+        }
+        
+        function toggleMenu () {
+            var setDisplay = function () {
+                var lis = document.querySelectorAll ("nav  li");
+                for (var index = 0; index < lis.length; index++) {
+                    if (index == 0) {
+                        continue;
+                    }
+                    lis[index].style.display = (lis[index].style.display != "block") ? "block" : "none";
+                }
+                this.removeEventListener(
+                    "animationend",
+                    setDisplay,
+                    false
+                );
+            };
             
-            function adjustMargin () {
-                var $margin = $("#header").outerHeight().toString() + 'px';
-                $("#main").css('padding-top', $margin);
-            } 
-        });
-    
+            var nav = document.querySelector("nav");
+            var animationName = nav.style.animationName;
+            var lis = nav.querySelector("ul").getElementsByTagName("li");
+                                    
+            if (animationName != "MonkeyOpen") {
+                setDisplay ("block");
+                nav.style.animation = "MonkeyOpen 1s ease-in-out forwards";
+            }
+            else {
+                nav.style.animation = "MonkeyClose 1s ease-in-out forwards";
+                nav.addEventListener (
+                    "animationend",
+                    setDisplay,
+                    false
+                );
+
+            }
+        }
+
+        function go () {
+            rotateObj.dropAnimation ();
+            
+            var startNum = parseInt(document.querySelector("#panel input:nth-of-type(1)").value);
+            var endNum = parseInt(document.querySelector("#panel input:nth-of-type(2)").value);
+
+            rotateObj = new Panel (document.querySelector("#panel > section"),
+                startNum,
+                endNum,
+                ["Monkey", "5s", "ease-in-out", "infinite", "alternate"]
+            );
+            rotateObj.startRotate ();
+
+        }
+//alert(window.getComputedStyle(document.querySelector("nav")).getPropertyValue("height"));
     </script>
+
 </body>
 </html>
